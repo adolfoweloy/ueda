@@ -1,0 +1,42 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0 auto;
+	max-width: 1024px;
+	font-size: 16px;
+}
+
+a {
+	color: #359c9c;
+	text-decoration: none;
+}
+
+aside,  section {
+	display: inline-block;
+	padding: 1em;
+}
+
+aside {
+	width: 160px;
+	vertical-align: top;
+}
+
+aside li a {
+	padding: 0.25em;
+	display: block;
+	margin-bottom: 0.25em;
+}
+
+aside li a:hover, aside li a:focus {
+	background: #f8f8f8;
+}
+
+section {
+	width: calc(99% - 160px);
+}
+
+.post {
+	margin-bottom: 1em;
+}
