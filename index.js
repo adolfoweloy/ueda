@@ -4,6 +4,8 @@ var express = require('express'),
 	crypto = require('crypto'),
 	exphbs = require('express-handlebars'),
 	marked = require('marked'),
+	Link = require('./models/link'),
+	Post = require('./models/post'),
 	fs = require('fs');
 
 var hbs = exphbs.create({
@@ -21,30 +23,50 @@ app.use('/static', express.static('static'));
 var posts = {},
 	links = [],
 	articlesFolder = __dirname + '/articles/';
+
+var loadPost = function(filename){
+	var postPath = articlesFolder + filename;
+	//try {
+		if (fs.statSync(postPath)) {
+			var data = fs.readFileSync(postPath, 'utf-8');
+			
+			if (data) {
+				var post = new Post(data, filename);
+				posts[post.file] = post;
+
+				links.push(post);
+				return post;
+			}
+		}
+	//} catch(err) {
+//		return null;
+//	}
+};
+
 fs.readdir(articlesFolder, function(err, filenames){
 	if (err) {
 		return console.error(err);
 	}
 	filenames.forEach(function(filename){
-		fs.readFile(articlesFolder + filename, 'utf-8', function(err, data){
-			if (err) {
-				return console.error(err);
-			}
-			var post = {};
-			post.id = crypto.createHash('md5').update(data).digest('hex');
-			post.content = marked(data);
-			post.file = filename.split('.')[0];
-			post.title = post.content.split('\n')[0].replace(/(<([^>]+)>)/ig,"");
-			post.url = '/' + post.file + '.html';
-			posts[post.file] = post;
-			links.push({id: post.id, url: post.url, title: post.title});
-		});
+		loadPost(filename);
 	});
 });
 
 app.get('/', function(req, res){
 	var data = {links: links, posts: posts};
 	res.render('index', data);
+});
+
+app.get('/:file.html', function(req, res, next){
+	var post = posts[req.params.file];
+	if(!post) {
+		var post = loadPost(req.params.file + '.md');
+		if (!post) {
+			res.render('404', {links: links});
+			return;
+		}
+	}
+	next();
 });
 
 app.get('/:file.html', function(req, res){
@@ -54,7 +76,6 @@ app.get('/:file.html', function(req, res){
 		res.render('article', data);
 		return;
 	}
-	res.render('404', {links: links});
 });
 
 app.listen(3000,function(){
