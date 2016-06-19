@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ueda</title>
+	<link rel="stylesheet" href="/static/css/reset.css">
+	<link rel="stylesheet" href="/static/css/markdown.css">
+	<link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+	<aside>
+		<h1>
+			<a href="/"><img src="/static/images/ueda.png" width="130"></a>
+		</h1>
+		<ul>
+			{{#links}}
+				{{#isnt ./id ../post.id}}
+					<li><a href="{{url}}" title="{{capitalize title}}">{{capitalize title}}</a></li>
+				{{/isnt}}
+			{{/links}}
+		</ul>
+	</aside>
+	<section>
+		<article class="post">
+			<div class="markdown-body">
+				{{{post.content}}}
+			</div>
+		</article>
+	</section>
+</body>
+</html>
