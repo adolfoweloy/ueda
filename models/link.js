@@ -1,3 +1,5 @@
+"use strict";
+
 class Link {
 	constructor(id, url, title){
 		this._id = id;

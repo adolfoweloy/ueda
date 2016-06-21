@@ -1,3 +1,5 @@
+"use strict";
+
 var Post = require(__dirname + '/../models/post'),
 	fs = require('fs');
 

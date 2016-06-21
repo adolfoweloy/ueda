@@ -3,7 +3,6 @@ var express = require('express'),
   postService = require(__dirname + '/../services/post'),
   fs = require('fs');
 
-
 router.get('/:file.html', function(req, res, next){
   if(Object.keys(postService.posts).length === 0) {
     postService.loadPosts(__dirname + '/../articles/');
