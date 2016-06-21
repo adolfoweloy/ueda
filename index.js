@@ -24,6 +24,6 @@ app.use('/static', express.static('static'));
 app.get('/', home);
 app.get('/:file.html', post);
 
-app.listen(3000,function(){
+app.listen(process.env.PORT || 3000, function(){
 	console.info('Started');
 });
