@@ -26,7 +26,7 @@ class PostService {
 			filenames.forEach(function(filename){
 				var post = self.loadPost(filename);
 				self._posts[post.file] = post;
-				self._linksPost.push(post);
+				self._linksPost.push(post.link);
 				return self.posts;
 			});
 		});

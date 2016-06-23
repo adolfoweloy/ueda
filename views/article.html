@@ -15,7 +15,7 @@
 		</h1>
 		<ul>
 			{{#linksPost}}
-				{{#isnt ./id ../post.id}}
+				{{#isnt ./url ../post.link.url}}
 					<li><a href="{{url}}" title="{{capitalize title}}">{{capitalize title}}</a></li>
 				{{/isnt}}
 			{{/linksPost}}

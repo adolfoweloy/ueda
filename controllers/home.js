@@ -8,8 +8,7 @@ if(Object.keys(postService.posts).length === 0) {
 }
 
 router.get('/', function(req, res) {
-  var data = {linksPost: postService.linksPost, posts: postService.posts};
-	res.render('home', data);
+	res.render('home', {linksPost: postService.linksPost, posts: postService.posts});
 });
 
 module.exports = router;

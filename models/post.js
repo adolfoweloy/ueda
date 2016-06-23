@@ -4,17 +4,16 @@ var crypto = require('crypto'),
 	marked = require('marked'),
 	Link = require(__dirname + '/link');
 
-class Post extends Link {
+class Post {
 	constructor(data, filename) {
-		let id = crypto.createHash('md5').update(data).digest('hex');
-		let file = filename.split('.')[0];
-		let content = marked(data);
-		let url = '/' + file + '.html';
-		let title = content.split('\n')[0].replace(/(<([^>]+)>)/ig,"");
-		super(id, url, title);
-		this._content = content;
-		this._file = file;
+		this._id = crypto.createHash('md5').update(data).digest('hex');
+		this._content = marked(data);
+		this._file = filename.split('.')[0];
+		this._title = this._content.split('\n')[0].replace(/(<([^>]+)>)/ig,"");
+	}
 
+	get id() {
+		return this._id;
 	}
 
 	get content() {
@@ -23,6 +22,14 @@ class Post extends Link {
 
 	get file() {
 		return this._file;
+	}
+
+	get title() {
+		return this._title;
+	}
+
+	get link() {
+		return new Link('/' + this._file + '.html', this._title);
 	}
 }
 
