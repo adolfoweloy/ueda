@@ -4,9 +4,6 @@ var express = require('express'),
   fs = require('fs');
 
 router.get('/:file.html', function(req, res, next){
-  if(Object.keys(postService.posts).length === 0) {
-    postService.loadPosts(__dirname + '/../articles/');
-  }
 	var post = postService.posts[req.params.file];
 	if(!post) {
 		var post = postService.loadPost(req.params.file + '.md');

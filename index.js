@@ -21,6 +21,8 @@ app.use(compression());
 
 app.use('/static', express.static('static'));
 
+postService.loadPosts(__dirname + '/articles/');
+
 app.get('/', home);
 app.get('/:file.html', post);
 

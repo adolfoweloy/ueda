@@ -3,9 +3,11 @@
 var Post = require(__dirname + '/../models/post'),
 	fs = require('fs');
 
+global.post = {};
+
 class PostService {
 	constructor() {
-		this._posts = {};
+		this._posts = global.post;
 		this._linksPost = [];
 	}
 
@@ -18,6 +20,7 @@ class PostService {
 	}
 
 	loadPosts(folder) {
+		console.info('Loading all posts from', folder);
 		let self = this;
 		fs.readdir(folder, function(err, filenames){
 			if (err) {
@@ -33,6 +36,8 @@ class PostService {
 	}
 
 	loadPost(filename) {
+		console.info('Loading post', filename);
+		let self = this;
 		var postPath = __dirname + '/../articles/' + filename;
 		try {
 			if (fs.statSync(postPath)) {
