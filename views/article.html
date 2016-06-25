@@ -12,7 +12,7 @@
 <body>
 	<aside>
 		<h1>
-			<a href="/"><img src="/static/images/logo.png" width="130"></a>
+			<a href="/"><img src="/static/images/ueda-icon.png" width="130"></a>
 		</h1>
 		<ul>
 			{{#linksPost}}
@@ -24,6 +24,9 @@
 	</aside>
 	<section>
 		<article class="post">
+			<h2>
+				<a href="{{post.link.url}}" title="{{post.title}}">{{post.title}}</a>
+			</h2>
 			<div class="markdown-body">
 				{{{post.content}}}
 			</div>

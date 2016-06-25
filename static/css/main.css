@@ -21,16 +21,22 @@ aside,  section {
 aside {
 	width: 160px;
 	vertical-align: top;
+	background-color: #0061d6;
+}
+
+aside h1 {
+	margin-bottom: 1em;
 }
 
 aside li a {
 	padding: 0.25em;
 	display: block;
 	margin-bottom: 0.25em;
+	color: #fff;
 }
 
 aside li a:hover, aside li a:focus {
-	background: #f8f8f8;
+	background: #0355b2;
 }
 
 section {
@@ -39,4 +45,10 @@ section {
 
 .post {
 	margin-bottom: 1em;
+}
+
+.post h2 a {
+	font-size: 2em;
+	margin-bottom: 0.5em;
+	display: block;
 }

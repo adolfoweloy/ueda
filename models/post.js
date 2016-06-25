@@ -7,9 +7,11 @@ var crypto = require('crypto'),
 class Post {
 	constructor(data, filename) {
 		this._id = crypto.createHash('md5').update(data).digest('hex');
-		this._content = marked(data);
+		let markdown = marked(data);
 		this._file = filename.split('.')[0];
-		this._title = this._content.split('\n')[0].replace(/(<([^>]+)>)/ig,"");
+		let content = markdown.split('\n');
+		this._title = content[0].replace(/(<([^>]+)>)/ig,"");
+		this._content = content.splice(1, content.length).join("");
 	}
 
 	get id() {
