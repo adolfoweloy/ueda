@@ -19,6 +19,7 @@ app.set('views', __dirname + '/views');
 
 app.use(compression());
 
+app.use("/manifest.json", express.static(__dirname + '/manifest.json'));
 app.use('/static', express.static('static'));
 
 postService.loadPosts(__dirname + '/articles/');
