@@ -1,0 +1,17 @@
+{
+  "name": "Ueda Tech Blog",
+  "short_name": "Ueda Blog",
+  "start_url": "./?utm_source=web_app_manifest",
+  "icons": [
+    {
+      "src": "static/images/ueda-icon.png",
+      "sizes": "166x166",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#0061d6",
+  "lang": "pt-br",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0061d6"
+}
